@@ -1,6 +1,6 @@
 {
-  "name": "@tldraw/tldraw",
-  "version": "1.28.0",
+  "name": "@ivine/tldraw",
+  "version": "1.28.1",
   "description": "A tiny little drawing app (editor)",
   "author": "@steveruizok",
   "repository": {

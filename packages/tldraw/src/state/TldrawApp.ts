@@ -214,6 +214,10 @@ export class TldrawApp extends StateManager<TDSnapshot> {
 
   session?: TldrawSession
 
+  pinchEnable = true
+  panEnable = true
+  zoomEnable = true
+
   readOnly = false
 
   isDirty = false
@@ -3709,14 +3713,30 @@ export class TldrawApp extends StateManager<TDSnapshot> {
   }
 
   onPinchStart: TLPinchEventHandler = (info, e) => {
+    if (!this.pinchEnable) {
+      return
+    }
     this.currentTool.onPinchStart?.(info, e)
   }
 
-  onPinchEnd: TLPinchEventHandler = (info, e) => this.currentTool.onPinchEnd?.(info, e)
+  onPinchEnd: TLPinchEventHandler = (info, e) => {
+    if (!this.pinchEnable) {
+      return
+    }
+    this.currentTool.onPinchEnd?.(info, e)
+  }
 
-  onPinch: TLPinchEventHandler = (info, e) => this.currentTool.onPinch?.(info, e)
+  onPinch: TLPinchEventHandler = (info, e) => {
+    if (!this.pinchEnable) {
+      return
+    }
+    this.currentTool.onPinch?.(info, e)
+  }
 
   onPan: TLWheelEventHandler = (info, e) => {
+    if (!this.panEnable) {
+      return
+    }
     if (this.appState.status === 'pinching') return
     // TODO: Pan and pinchzoom are firing at the same time. Considering turning one of them off!
 
@@ -3736,6 +3756,9 @@ export class TldrawApp extends StateManager<TDSnapshot> {
   }
 
   onZoom: TLWheelEventHandler = (info, e) => {
+    if (!this.zoomEnable) {
+      return
+    }
     if (this.state.appState.status !== TDStatus.Idle) return
     const delta = info.delta[2] / 50
     this.zoomBy(delta, info.point)
