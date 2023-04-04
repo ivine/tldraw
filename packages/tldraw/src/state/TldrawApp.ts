@@ -2321,18 +2321,12 @@ export class TldrawApp extends StateManager<TDSnapshot> {
     return this
   }
 
-  exportDocumentJson = (containAssets: boolean) => {
+  exportDocument = (containAssets: boolean) => {
     const doc = migrate(this.state, TldrawApp.version).document
     if (!containAssets) {
       doc.assets = {}
     }
-    let json = ''
-    try {
-      json = JSON.stringify(doc)
-    } catch (e) {
-      console.error('saveProjectInJsonFormat, error: ', e)
-    }
-    return json
+    return doc
   }
 
   /**

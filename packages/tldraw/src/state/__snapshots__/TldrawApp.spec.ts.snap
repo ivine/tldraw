@@ -305,7 +305,7 @@ TldrawTestApp {
   "expectSelectedIdsToBe": [Function],
   "expectShapesToBeAtPoints": [Function],
   "expectShapesToHaveProps": [Function],
-  "exportDocumentJson": [Function],
+  "exportDocument": [Function],
   "exportImage": [Function],
   "exportJson": [Function],
   "fileSystemHandle": null,
